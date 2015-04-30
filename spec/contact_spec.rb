@@ -107,7 +107,22 @@ describe(Contact) do
     end
   end
 
-  # describe('#add_address') do
-  #
-  # end
+  describe('addresses') do
+    it('returns an empty array of addresses for that contact') do
+      test_contact = Contact.new({:first_name => 'John', :last_name => 'Smith', :birthday => 'July 1, 1870'})
+      test_contact.save()
+      expect(test_contact.addresses()).to(eq([]))
+    end
+  end
+
+  describe('#add_address') do
+    it('adds an address to a contact') do
+      test_contact = Contact.new({:first_name => 'John', :last_name => 'Smith', :birthday => 'July 1, 1870'})
+      test_contact.save()
+      test_address = Address.new({:street => '654 N Broadway Street', :city => 'Portland', :state => 'Oregon', :zip_code => '97314'})
+      test_address.save()
+      test_contact.add_address(test_address)
+      expect(test_contact.addresses()).to(eq([test_address]))
+    end
+  end
 end
