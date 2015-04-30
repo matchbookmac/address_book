@@ -56,4 +56,22 @@ describe(Address) do
       expect(Address.all()).to(eq([]))
     end
   end
+
+  define_method('#id') do
+    it('returns the id of an address object') do
+      test_address = Address.new({:street => '654 N Broadway Street', :city => 'Portland', :state => 'Oregon', :zip_code => '97314'})
+      test_address.save()
+      expect(test_address.id()).to(eq(1))
+    end
+  end
+
+  define_method('.find_id') do
+    it('returns an address from its id') do
+      test_address = Address.new({:street => '654 N Broadway Street', :city => 'Portland', :state => 'Oregon', :zip_code => '97314'})
+      test_address.save()
+      test_address_2 = Address.new({:street => '456 N Water Ave', :city => 'Portland', :state => 'Oregon', :zip_code => '97214'})
+      test_address_2.save()
+      expect(Address.find(2)).to(eq(test_address_2))
+    end
+  end
 end
