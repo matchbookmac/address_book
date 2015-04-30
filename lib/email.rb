@@ -21,10 +21,6 @@ class Email
     @@emails = []
   end
 
-  define_method(:id) do
-    @id
-  end
-
   define_singleton_method(:find) do |id|
     found_email = nil
     @@emails.each() do |email|
