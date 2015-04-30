@@ -42,4 +42,24 @@ describe(Email) do
       expect(Email.all()).to(eq([]))
     end
   end
+
+  describe('#id') do
+    it('assigns and id to an email') do
+      test_email = Email.new({:user_name => 'ian', :domain => 'epicodus.com'})
+      test_email.save()
+      test_email_2 = Email.new({:user_name => 'kim', :domain => 'gmail.com'})
+      test_email_2.save()
+      expect(test_email_2.id()).to(eq(2))
+    end
+  end
+
+  describe('.find') do
+    it('returns an email object by its id') do
+      test_email = Email.new({:user_name => 'ian', :domain => 'epicodus.com'})
+      test_email.save()
+      test_email_2 = Email.new({:user_name => 'kim', :domain => 'gmail.com'})
+      test_email_2.save()
+      expect(Email.find(test_email_2.id())).to(eq(test_email_2))
+    end
+  end
 end
