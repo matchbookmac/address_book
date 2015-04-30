@@ -1,0 +1,19 @@
+<h2>Please enter in an address for this contact:</h2>
+
+<form action="/contact/<%= @contact.id() %>/add/address" method="post">
+  <div class="form-group">
+    <input id="street" name="street" type="text" class="form-control" placeholder="street">
+  </div>
+  <div class="form-group">
+    <input id="city" name="city" type="text" class="form-control" placeholder="City">
+  </div>
+  <div class="form-group">
+    <input id="state" name="state" type="text" class="form-control" placeholder="State">
+  </div>
+  <div class="form-group">
+    <input id="zip_code" name="zip_code" type="text" class="form-control" placeholder="Zip">
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn-success">Add</button>
+  </div>
+</form>

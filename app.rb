@@ -58,6 +58,21 @@ post('/contact/:id/add/email') do
   @email = Email.new({:user_name => @user_name, :domain => @domain})
   @email.save()
   @contact.add_email(@email)
-# binding.pry
   erb(:email_success)
+end
+
+get('/contact/:id/add/address') do
+  @contact = Contact.find(params.fetch('id').to_i())
+  erb(:address_form)
+end
+
+post('/contact/:id/add/address') do
+  @contact = Contact.find(params.fetch('id').to_i())
+  @street = params.fetch('street')
+  @city = params.fetch('city')
+  @state = params.fetch('state')
+  @zip_code = params.fetch('zip_code')
+  @address = Address.new({:street => @street, :city => @city, :state => @state, :zip_code => @zip_code})
+  @contact.add_address(@address)
+  erb(:address_success)
 end
