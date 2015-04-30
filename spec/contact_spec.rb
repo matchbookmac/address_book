@@ -88,10 +88,25 @@ describe(Contact) do
     end
   end
 
-  # describe('#add_email') do
-  #
-  # end
-  #
+  describe('#emails') do
+    it('returns an empty array of emails for that contact') do
+      test_contact = Contact.new({:first_name => 'John', :last_name => 'Smith', :birthday => 'July 1, 1870'})
+      test_contact.save()
+      expect(test_contact.emails()).to(eq([]))
+    end
+  end
+
+  describe('#add_email') do
+    it('adds an email to a contact') do
+      test_contact = Contact.new({:first_name => 'John', :last_name => 'Smith', :birthday => 'July 1, 1870'})
+      test_contact.save()
+      test_email = Email.new({:user_name => 'ian', :domain => 'epicodus.com'})
+      test_email.save()
+      test_contact.add_email(test_email)
+      expect(test_contact.emails()).to(eq([test_email]))
+    end
+  end
+
   # describe('#add_address') do
   #
   # end

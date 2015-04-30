@@ -1,5 +1,5 @@
 class Contact
-  attr_reader(:first_name, :last_name, :birthday, :id, :phone_numbers)
+  attr_reader(:first_name, :last_name, :birthday, :id, :phone_numbers, :emails)
 
   @@contacts = []
 
@@ -9,6 +9,7 @@ class Contact
     @birthday = attributes.fetch(:birthday)
     @id = @@contacts.length().+(1)
     @phone_numbers = []
+    @emails = []
   end
 
   define_singleton_method(:all) do
@@ -37,4 +38,7 @@ class Contact
     @phone_numbers.push(phone_number)
   end
 
+  define_method(:add_email) do |email|
+    @emails.push(email)
+  end
 end
