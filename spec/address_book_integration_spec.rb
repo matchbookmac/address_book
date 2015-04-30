@@ -39,3 +39,21 @@ describe('the add address contact path', {:type => :feature}) do
     expect(page).to have_content('John\'s phone number : (503) 555-1234 has been added to your address book')
   end
 end
+
+describe('the add email contact path', {:type => :feature}) do
+  it('will click on a contact and lead to the contact information page. the user can then add an email for that contact') do
+    visit('/')
+    click_link('Add Contact')
+    fill_in('first_name', :with => 'Kim')
+    fill_in('last_name', :with => 'Dang')
+    fill_in('birthday', :with => 'July, 1, 1870')
+    click_button('Add')
+    click_link('Home')
+    click_link('Kim Dang')
+    click_link('Add a New E-mail')
+    fill_in('user_name', :with => 'kim')
+    fill_in('domain', :with => 'gmail.com')
+    click_button('Add')
+    expect(page).to have_content('Kim\'s email : kim@gmail.com has been added to your address book')
+  end
+end

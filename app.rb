@@ -45,3 +45,19 @@ post('/contact/:id/add/phonenumber') do
   @contact.add_number(@phone_number)
   erb(:phone_success)
 end
+
+get('/contact/:id/add/email') do
+  @contact = Contact.find(params.fetch('id').to_i())
+  erb(:email_form)
+end
+
+post('/contact/:id/add/email') do
+  @contact = Contact.find(params.fetch('id').to_i())
+  @user_name = params.fetch('user_name')
+  @domain = params.fetch('domain')
+  @email = Email.new({:user_name => @user_name, :domain => @domain})
+  @email.save()
+  @contact.add_email(@email)
+# binding.pry
+  erb(:email_success)
+end
