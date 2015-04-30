@@ -1,5 +1,5 @@
 class Phone
-  attr_reader(:area_code, :number, :type)
+  attr_reader(:area_code, :number, :type, :id)
 
   @@phones = []
 
@@ -7,6 +7,7 @@ class Phone
     @area_code = attributes.fetch(:area_code)
     @number = attributes.fetch(:number)
     @type = attributes.fetch(:type)
+    @id = @@phones.length().+(1)
   end
 
   define_method(:save) do
@@ -19,5 +20,15 @@ class Phone
 
   define_singleton_method(:clear) do
     @@phones = []
+  end
+
+  define_singleton_method(:find) do |id|
+    found_phone = nil
+    @@phones.each() do |phone|
+      if phone.id().eql?(id)
+        found_phone = phone
+      end
+    end
+    found_phone
   end
 end
