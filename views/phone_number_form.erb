@@ -1,5 +1,5 @@
 <h2>Please enter in a phone number:</h2>
-<form action="/add/phonenumber">
+<form action="/contact/<%= @contact.id() %>/add/phonenumber" method="post">
   <div class="form-group">
     <input id="area_code" name="area_code" type="text" class="form-control" placeholder="Area Code">
   </div>

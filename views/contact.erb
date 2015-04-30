@@ -3,14 +3,14 @@
 
 <h3>Phone Numbers:</h3>
   <ul>
-    <% @contact.phone_numbers() do |number| %>
+    <% @contact.phone_numbers().each() do |number| %>
       <li>(<%= number.area_code() %>) <%= number.number() %> : <%= number.type() %></li>
     <% end %>
   </ul>
 
 <h3>E-mails:</h3>
   <ul>
-    <% @contact.emails() do |email| %>
+    <% @contact.emails().each() do |email| %>
       <li><%= email.user_name() %>@<%= email.domain() %></li>
     <% end %>
   </ul>
@@ -18,7 +18,7 @@
 
 <h3>Addresses:</h3>
   <ul>
-    <% @contact.addresses() do |address| %>
+    <% @contact.addresses().each() do |address| %>
       <li><address>
         <strong><%= address.street() %></strong><br>
         <%= address.city() %>, <%= address.state() %> <%= address.zip_code() %>
@@ -26,5 +26,5 @@
     <% end %>
   </ul>
 
-<p><a href='/add/phonenumber'>Add a New Phone Number</a></p>
+<p><a href='/contact/<%= @contact.id() %>/add/phonenumber'>Add a New Phone Number</a></p>
 <p><a href='/'>Home</a></p>

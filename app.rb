@@ -1,3 +1,4 @@
+require('pry')
 require('sinatra')
 require('sinatra/reloader')
 require('./lib/contact')
@@ -29,15 +30,18 @@ post('/add/contact') do
   erb(:contact_success)
 end
 
-get('/add/phonenumber') do
+get('/contact/:id/add/phonenumber') do
+  @contact = Contact.find(params.fetch('id').to_i())
   erb(:phone_number_form)
 end
 
 post('/contact/:id/add/phonenumber') do
+  @contact = Contact.find(params.fetch('id').to_i())
   @area_code = params.fetch('area_code')
   @number = params.fetch('number')
   @type = params.fetch('type')
   @phone_number = Phone.new({:area_code => @area_code, :number => @number, :type => @type})
   @phone_number.save()
+  @contact.add_number(@phone_number)
   erb(:phone_success)
 end

@@ -1,0 +1,4 @@
+<h2><%= @contact.first_name() %>'s phone number : (<%= @phone_number.area_code() %>) <%= @phone_number.number() %> has been added to your address book</h2>
+
+<p><a href='/contact/<%= @contact.id() %>/add/phonenumber'>Add another phone number for this contact</a></p>
+<p><a href='/'>Home</a></p>
