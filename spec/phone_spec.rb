@@ -36,4 +36,13 @@ describe(Phone) do
       expect(Phone.all()).to(eq([test_phone_number]))
     end
   end
+
+  describe('.clear') do
+    it('empties the array of saved phone numbers') do
+      test_phone_number = Phone.new(:area_code => '503', :number => '555-1234', :type => 'home')
+      test_phone_number.save()
+      Phone.clear()
+      expect(Phone.all()).to(eq([]))
+    end
+  end
 end

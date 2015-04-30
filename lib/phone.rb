@@ -16,4 +16,8 @@ class Phone
   define_singleton_method(:all) do
     @@phones
   end
+
+  define_singleton_method(:clear) do
+    @@phones = []
+  end
 end
