@@ -11,15 +11,33 @@ get('/') do
   erb(:index)
 end
 
-get('/contact') do
+get('/contact/:id') do
+  @contact = Contact.find(params.fetch('id').to_i())
+  erb(:contact)
+end
+
+get('/add/contact') do
   erb(:contact_form)
 end
 
-post('/contact') do
+post('/add/contact') do
   @first_name = params.fetch('first_name')
   @last_name = params.fetch('last_name')
   @birthday = params.fetch('birthday')
   @contact = Contact.new({:first_name => @first_name, :last_name => @last_name, :birthday => @birthday})
   @contact.save()
-  erb(:success)
+  erb(:contact_success)
+end
+
+get('/add/phonenumber') do
+  erb(:phone_number_form)
+end
+
+post('/contact/:id/add/phonenumber') do
+  @area_code = params.fetch('area_code')
+  @number = params.fetch('number')
+  @type = params.fetch('type')
+  @phone_number = Phone.new({:area_code => @area_code, :number => @number, :type => @type})
+  @phone_number.save()
+  erb(:phone_success)
 end
