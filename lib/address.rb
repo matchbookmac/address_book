@@ -8,6 +8,7 @@ class Address
     @city = attributes.fetch(:city)
     @state = attributes.fetch(:state)
     @zip_code = attributes.fetch(:zip_code)
+    @id = @@addresses.length().+(1)
   end
 
   define_method(:save) do
@@ -20,5 +21,15 @@ class Address
 
   define_singleton_method(:clear) do
     @@addresses = []
+  end
+
+  define_singleton_method(:find) do |id|
+    found_address = nil
+    @@addresses.each() do |address|
+      if address.id().eql?(id)
+        found_address = address
+      end
+    end
+    found_address
   end
 end

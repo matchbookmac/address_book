@@ -1,5 +1,6 @@
 require('rspec')
 require('address')
+require('pry')
 
 describe(Address) do
   before() do
@@ -57,7 +58,7 @@ describe(Address) do
     end
   end
 
-  define_method('#id') do
+  describe('#id') do
     it('returns the id of an address object') do
       test_address = Address.new({:street => '654 N Broadway Street', :city => 'Portland', :state => 'Oregon', :zip_code => '97314'})
       test_address.save()
@@ -65,7 +66,7 @@ describe(Address) do
     end
   end
 
-  define_method('.find_id') do
+  describe('.find') do
     it('returns an address from its id') do
       test_address = Address.new({:street => '654 N Broadway Street', :city => 'Portland', :state => 'Oregon', :zip_code => '97314'})
       test_address.save()
