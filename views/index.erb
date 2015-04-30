@@ -1,0 +1,10 @@
+<h1>Address Book</h1>
+
+<h3>Here are your contacts:</h3>
+
+<ul>
+  <% @contacts.each() do |contact| %>
+  <li><%= contact.first_name() %> <%= contact.last_name() %></li>
+  <% end %>
+</ul>
+<h4><a href='/contact'>Add Contact</a></h4>
